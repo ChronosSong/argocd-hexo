@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hexo-light
+  labels:
+    app: hexo-light
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hexo-light
+  template:
+    metadata:
+      labels:
+        app: hexo-light
+    spec:
+      volumes:
+        - name: data-hexo
+          persistentVolumeClaim:
+            claimName: data-hexo-light
+      containers:
+        - name: hexo
+          image: chronosroot/hexo
+          ports:
+            - containerPort: 4000
+              protocol: TCP
+          resources: {}
+          volumeMounts:
+            - name: data-hexo
+              mountPath: /var/www/hexo
