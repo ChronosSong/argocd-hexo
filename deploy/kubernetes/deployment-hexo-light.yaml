@@ -17,7 +17,7 @@ spec:
       volumes:
         - name: data-hexo
           persistentVolumeClaim:
-            claimName: data-hexo-light
+            claimName: hexo-light
       containers:
         - name: hexo
           image: chronosroot/hexo
